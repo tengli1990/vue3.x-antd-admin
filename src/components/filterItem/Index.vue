@@ -1,17 +1,20 @@
 <template>
-  <div class="home">
-    2222222
+  <div>
+123123132
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Aboute from './About.vue';
 
 export default defineComponent({
-  name: 'Home',
-  components: {
-    Aboute
+  name: 'm-filter-item',
+  setup () {
+    return {};
   }
 });
 </script>
+
+<style scoped>
+
+</style>

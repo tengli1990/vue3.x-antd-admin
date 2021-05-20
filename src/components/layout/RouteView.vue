@@ -1,17 +1,17 @@
 <template>
-  <div class="home">
-    2222222
-  </div>
+  <router-view></router-view>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Aboute from './About.vue';
 
 export default defineComponent({
-  name: 'Home',
-  components: {
-    Aboute
+  setup () {
+    return {};
   }
 });
 </script>
+
+<style scoped>
+
+</style>
