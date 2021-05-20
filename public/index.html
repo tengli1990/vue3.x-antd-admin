@@ -11,6 +11,10 @@
   </title>
   <meta content="<%= VUE_APP_TITLE %>描述" name="description" />
   <link href="/static/css/loading.css" rel="stylesheet" />
+  <script>
+    const _warn = console.warn;
+    window.console.warn = function (msg) {};
+  </script>
 </head>
 
 <body>

@@ -2,6 +2,7 @@ import { App, Component } from 'vue';
 import FilterItem from './filterItem/Index.vue';
 import Layout from './layout/Index.vue';
 import Menu from './layout/menu/Menu.vue';
+import Icon from './icon/Index.vue';
 import { createFromIconfontCN } from '@ant-design/icons-vue';
 
 // icon
@@ -11,7 +12,8 @@ const IconFont = createFromIconfontCN({
 const components: Component[] = [
   FilterItem,
   Layout,
-  Menu
+  Menu,
+  Icon
 ];
 
 export const registerComponents = (app: App): void => {

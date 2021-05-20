@@ -1,6 +1,7 @@
 <template>
   <div class="layout-logo">
-    <img :src="logo" alt="">
+    <img class="layout-logo--img" :src="logo">
+    <span class="layout-logo--text">vue3.x admin</span>
   </div>
 </template>
 
@@ -8,7 +9,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'as-logo',
+  name: 'AsLogo',
   setup () {
     return {
       logo: require('@/assets/logo.png')
@@ -17,18 +18,26 @@ export default defineComponent({
 });
 </script>
 
-<style  scoped>
+<style lang="less"  scoped>
 .layout-logo {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 33px;
-  margin: 16px 5px;
+  align-items:flex-start;
+  justify-content: flex-start;
+  height: 40px;
+  margin: 13px 20px;
   overflow: hidden;
   overflow: hidden;
   font-size: 15px;
   color: #fff;
   text-overflow: ellipsis;
   white-space: nowrap;
+  &--img{
+    width:40px;
+    height:40px;
+    margin-right: 10px;
+  }
+  &--text{
+    font-size:20px;
+  }
 }
 </style>

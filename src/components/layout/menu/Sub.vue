@@ -1,9 +1,7 @@
 <template>
   <a-sub-menu :key="item.fullPath">
     <template #title>
-      <span class="anticon" >
-        <icon-font v-if="item.meta.icon" :type="item.meta.icon"></icon-font>
-      </span>
+      <icon-font v-if="item.meta.icon" :type="item.meta.icon"></icon-font>
       <span>{{ item.meta.title }}</span>
     </template>
     <slot></slot>

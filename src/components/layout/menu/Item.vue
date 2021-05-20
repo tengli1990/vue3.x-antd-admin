@@ -1,15 +1,13 @@
 <template>
   <a-menu-item :key="routeChildren.path" @click.capture="handleLink">
-    <span class="anticon" >
-      <icon-font v-if="routeChildren.meta.icon" :type="routeChildren.meta.icon"></icon-font>
-    </span>
+    <icon-font v-if="routeChildren.meta.icon" :type="routeChildren.meta.icon"></icon-font>
     <span>{{ routeChildren.meta.title }}</span>
   </a-menu-item>
 </template>
 
 <script lang="ts">
   import { isExternal } from '@/utils/validate';
-  import { defineComponent, toRaw } from 'vue';
+  import { defineComponent } from 'vue';
 
   export default defineComponent({
     name: 'm-menu-item',
@@ -31,15 +29,20 @@
     computed: {},
     methods: {
       handleLink () {
-        console.log(1111, toRaw(toRaw(this)));
         const routePath = this.routeChildren.fullPath;
         const target = this.routeChildren.meta.target;
         if (target === '_blank') {
-          if (isExternal(routePath)) window.open(routePath);
-          else if (this.$route.path !== routePath) window.open(routePath.href);
+          if (isExternal(routePath)) {
+            window.open(routePath);
+          } else if (this.$route.path !== routePath) {
+            window.open(routePath.href);
+          }
         } else {
-          if (isExternal(routePath)) window.location.href = routePath;
-          else if (this.$route.path !== routePath) this.$router.push(routePath);
+          if (isExternal(routePath)) {
+            window.location.href = routePath;
+          } else if (this.$route.path !== routePath) {
+            this.$router.push(routePath);
+          }
         }
       }
     }

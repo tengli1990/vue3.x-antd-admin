@@ -1,0 +1,26 @@
+.basic-layout {
+  height: 100vh;
+  &--sider {
+  }
+  &--header {
+    background: #fff;
+    padding: 0;
+    .collapsed-btn {
+      display: inline-block;
+      font-size: 20px;
+      padding: 0 20px;
+      > *:hover {
+        color: @primary-color;
+      }
+    }
+    .right-box{
+      float: right;
+      padding:0 20px;
+    }
+  }
+  &--content {
+    height: 100%;
+  }
+  &--footer {
+  }
+}

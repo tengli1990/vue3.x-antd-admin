@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    2222222
+   页头
   </div>
 </template>
 
@@ -15,3 +15,11 @@ export default defineComponent({
   }
 });
 </script>
+
+<style lang="less">
+.home{
+  // background-color:red;
+  width:100%;
+  height:50%;
+}
+</style>

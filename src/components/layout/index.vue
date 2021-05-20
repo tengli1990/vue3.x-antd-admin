@@ -1,108 +1,94 @@
 <template>
-  <div style="width: 256px">
-    <a-button type="primary" @click="toggleCollapsed" style="margin-bottom: 16px">
-      <MenuUnfoldOutlined v-if="collapsed" />
-      <MenuFoldOutlined v-else />
-    </a-button>
-    <a-menu
-      :default-selected-keys="['1']"
-      :default-open-keys="['2']"
-      mode="inline"
-      theme="dark"
-      :inline-collapsed="collapsed"
-    >
-      <template v-for="item in list" :key="item.key">
-        <template v-if="!item.children">
-          <a-menu-item :key="item.key">
-            <PieChartOutlined />
-            <span>{{ item.title }}</span>
-          </a-menu-item>
-        </template>
-        <template v-else>
-          <sub-menu :menu-info="item" :key="item.key" />
-        </template>
-      </template>
-    </a-menu>
-  </div>
+  <a-layout class="basic-layout">
+    <a-layout-sider class="basic-layout--sider" :width="siderWidth" v-model:collapsed="collapsed" :trigger="null" collapsible>
+      <AsLogo />
+      <!-- menu -->
+      <a-menu mode="inline" theme="dark" v-model:selectedKeys="selectedKeys">
+        <m-menu v-for="route in menus" :key="route.path" :item="route"></m-menu>
+      </a-menu>
+      <!-- menu end -->
+    </a-layout-sider>
+    <a-layout>
+      <a-layout-header class="basic-layout--header">
+        <div class="collapsed-btn">
+          <MenuUnfoldOutlined v-if="collapsed" @click="toggleCollapsed()" />
+          <MenuFoldOutlined v-else @click="toggleCollapsed()" />
+        </div>
+        <div class="right-box">
+          <AsAvatar />
+        </div>
+      </a-layout-header>
+      <a-layout-content class="basic-layout--content">
+        <router-view />
+      </a-layout-content>
+      <a-layout-footer class="basic-layout--footer">Footer</a-layout-footer>
+    </a-layout>
+  </a-layout>
 </template>
+
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  PieChartOutlined,
-  MailOutlined
-} from '@ant-design/icons-vue';
+  import { defineComponent, toRaw } from 'vue';
+  import { asyncRoutes } from '../../router/index';
+  import { filterRoutes } from '@/utils/routes';
+  import AsLogo from './logo/Logo.vue';
+  import AsAvatar from './avatar/Index.vue';
+  // import { mapGetters } from 'vuex';
+  import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue';
 
-// you can rewrite it to a single file component, if not, you should config vue alias to vue/dist/vue.esm-bundler.js
-const SubMenu = {
-  name: 'SubMenu',
-  props: {
-    menuInfo: {
-      type: Object,
-      default: () => ({})
-    }
-  },
-  template: `
-    <a-sub-menu :key="menuInfo.key" v-bind="$attrs">
-      <template #title>
-        <span>
-          <MailOutlined /><span>{{ menuInfo.title }}</span>
-        </span>
-      </template>
-      <template v-for="item in menuInfo.children" :key="item.key">
-        <template v-if="!item.children">
-          <a-menu-item :key="item.key">
-            <PieChartOutlined />
-            <span>{{ item.title }}</span>
-          </a-menu-item>
-        </template>
-        <template v-else>
-          <sub-menu :menu-info="item" :key="item.key" />
-        </template>
-      </template>
-    </a-sub-menu>
-  `,
-  components: {
-    PieChartOutlined,
-    MailOutlined
-  }
-};
-const list = [
-  {
-    key: '1',
-    title: 'Option 1'
-  },
-  {
-    key: '2',
-    title: 'Navigation 2',
-    children: [
-      {
-        key: '2.1',
-        title: 'Navigation 3',
-        children: [{ key: '2.1.1', title: 'Option 2.1.1' }]
+  export default defineComponent({
+    name: 'm-layour',
+    components: {
+      [AsAvatar.name]: AsAvatar,
+      [AsLogo.name]: AsLogo,
+      MenuFoldOutlined,
+      MenuUnfoldOutlined
+    },
+    data () {
+      const selectedKeys: string[] = [];
+      // const openKeys: string[] = [];
+      return {
+        selectedKeys: selectedKeys,
+        // openKeys: openKeys,
+        collapsed: false,
+        siderWidth: 280
+      };
+    },
+    computed: {
+      menus () {
+        const routers = filterRoutes(asyncRoutes);
+        return routers;
       }
-    ]
-  }
-];
-export default defineComponent({
-  setup () {
-    const collapsed = ref<boolean>(false);
+    },
 
-    const toggleCollapsed = () => {
-      collapsed.value = !collapsed.value;
-    };
-    return {
-      list,
-      collapsed,
-      toggleCollapsed
-    };
-  },
-  components: {
-    'sub-menu': SubMenu,
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-    PieChartOutlined
-  }
-});
+    watch: {
+      $route: {
+        handler ({ path, matched }) {
+          // this.openKeys = [];
+          matched.forEach((route: any) => {
+            if (route.redirect) {
+              if (route.children.length > 1) {
+                this.selectedKeys = [path];
+              } else {
+                this.selectedKeys = [route.path];
+              }
+              // this.openKeys.push(route.path);
+            }
+          });
+        },
+        immediate: true
+      }
+    },
+    mounted () {
+      console.log(toRaw(this.$store.getters.user));
+      // console.log(this.locale);
+    },
+    methods: {
+      toggleCollapsed () {
+        this.collapsed = !this.collapsed;
+      }
+    }
+  });
 </script>
+
+<style lang="less" scoped>
+</style>
