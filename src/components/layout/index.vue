@@ -3,7 +3,7 @@
     <a-layout-sider class="basic-layout--sider" :width="siderWidth" v-model:collapsed="collapsed" :trigger="null" collapsible>
       <AsLogo />
       <!-- menu -->
-      <a-menu mode="inline" theme="dark" v-model:selectedKeys="selectedKeys">
+      <a-menu mode="inline" theme="dark" v-model:selectedKeys="selectedKeys" v-model:openKeys="openKeys">
         <m-menu v-for="route in menus" :key="route.path" :item="route"></m-menu>
       </a-menu>
       <!-- menu end -->
@@ -45,10 +45,10 @@
     },
     data () {
       const selectedKeys: string[] = [];
-      // const openKeys: string[] = [];
+      const openKeys: string[] = [];
       return {
         selectedKeys: selectedKeys,
-        // openKeys: openKeys,
+        openKeys: openKeys,
         collapsed: false,
         siderWidth: 280
       };
@@ -63,7 +63,7 @@
     watch: {
       $route: {
         handler ({ path, matched }) {
-          // this.openKeys = [];
+          this.openKeys = [];
           matched.forEach((route: any) => {
             if (route.redirect) {
               if (route.children.length > 1) {
@@ -71,7 +71,7 @@
               } else {
                 this.selectedKeys = [route.path];
               }
-              // this.openKeys.push(route.path);
+              this.openKeys.push(route.path);
             }
           });
         },
@@ -80,7 +80,6 @@
     },
     mounted () {
       console.log(toRaw(this.$store.getters.user));
-      // console.log(this.locale);
     },
     methods: {
       toggleCollapsed () {
@@ -90,5 +89,4 @@
   });
 </script>
 
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>
