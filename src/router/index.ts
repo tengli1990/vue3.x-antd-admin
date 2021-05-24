@@ -87,7 +87,7 @@ export const asyncRoutes: Array<CustomRouteRecordRaw> = [
         },
         children: [
           {
-            path: '/comp/echart1',
+            path: 'echart1',
             name: 'Echart1',
             component: (): Component => import('@/views/echart.sample/Index.vue'),
             meta: {
@@ -97,7 +97,7 @@ export const asyncRoutes: Array<CustomRouteRecordRaw> = [
             }
           },
           {
-            path: '/page-header1',
+            path: 'page-header1',
             name: 'PageIcon1',
             component: (): Component => import('@/views/Home.vue'),
             meta: {

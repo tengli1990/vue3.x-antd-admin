@@ -19,7 +19,6 @@
         </div>
       </a-layout-header>
       <a-layout-content class="basic-layout--content">
-        {{ openKeys }}
         <router-view />
       </a-layout-content>
       <a-layout-footer class="basic-layout--footer">Footer</a-layout-footer>
