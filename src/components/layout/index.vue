@@ -19,6 +19,7 @@
         </div>
       </a-layout-header>
       <a-layout-content class="basic-layout--content">
+        {{ openKeys }}
         <router-view />
       </a-layout-content>
       <a-layout-footer class="basic-layout--footer">Footer</a-layout-footer>
@@ -49,6 +50,7 @@
       return {
         selectedKeys: selectedKeys,
         openKeys: openKeys,
+        closeKeys: [],
         collapsed: false,
         siderWidth: 280
       };
@@ -62,18 +64,9 @@
 
     watch: {
       $route: {
-        handler ({ path, matched }) {
+        handler (route) {
           this.openKeys = [];
-          matched.forEach((route: any) => {
-            if (route.redirect) {
-              if (route.children.length > 1) {
-                this.selectedKeys = [path];
-              } else {
-                this.selectedKeys = [route.path];
-              }
-              this.openKeys.push(route.path);
-            }
-          });
+          this.resetRouteKeys(route);
         },
         immediate: true
       }
@@ -84,6 +77,23 @@
     methods: {
       toggleCollapsed () {
         this.collapsed = !this.collapsed;
+        if (this.collapsed) {
+          this.openKeys = [];
+        } else {
+          this.resetRouteKeys(this.$route);
+        }
+      },
+      resetRouteKeys ({ path, matched }: any) {
+        matched.forEach((route: any) => {
+          if (route.redirect) {
+            if (route.children.length > 1) {
+              this.selectedKeys = [path];
+            } else {
+              this.selectedKeys = [route.path];
+            }
+            this.openKeys.push(route.path);
+          }
+        });
       }
     }
   });
