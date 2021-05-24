@@ -19,31 +19,26 @@
 
 <script lang="ts">
   import { DownOutlined } from '@ant-design/icons-vue';
+import { defineComponent } from 'vue';
 
   // import { mapGetters } from 'vuex';
-  export default {
+  export default defineComponent({
     name: 'AsAvatar',
     components: { DownOutlined },
-    data (): any {
+    data () {
       return {
         avatar: require('@/assets/image/avatar.gif'),
         username: '李腾'
       };
     },
-    computed: {
-      // ...mapGetters({
-      //   avatar: 'user/avatar',
-      //   username: 'user/username'
-      // })
-    },
     methods: {
-      logout (): void {
+      logout () {
         // await this.$store.dispatch('user/logout');
         const fullPath = this.$route.fullPath;
         this.$router.push(`/login?redirect=${fullPath}`);
       }
     }
-  };
+  });
 </script>
 <style lang="less">
   .as-avatar {

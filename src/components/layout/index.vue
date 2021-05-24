@@ -29,7 +29,7 @@
 <script lang="ts">
   import { defineComponent, toRaw } from 'vue';
   import { asyncRoutes } from '../../router/index';
-  import { filterRoutes } from '@/utils/routes';
+  import { setFulPath } from '@/utils/routes';
   import AsLogo from './logo/Logo.vue';
   import AsAvatar from './avatar/Index.vue';
   // import { mapGetters } from 'vuex';
@@ -55,7 +55,7 @@
     },
     computed: {
       menus () {
-        const routers = filterRoutes(asyncRoutes);
+        const routers = setFulPath(asyncRoutes);
         return routers;
       }
     },

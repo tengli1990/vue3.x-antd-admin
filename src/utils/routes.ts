@@ -1,5 +1,6 @@
-import { CustomRouteRecordRaw } from '@/router/router.d';
+import { CustomRedirectRoute, CustomRouteRecordRaw } from '@/router/router.d';
 import { isExternal } from '@/utils/validate';
+import { RouteMeta } from 'vue-router';
 const path = require('path');
 
 /**
@@ -8,12 +9,83 @@ const path = require('path');
  * @param baseUrl
  * @returns {[]}
  */
-export function filterRoutes (routes:CustomRouteRecordRaw[], baseUrl = '/'): CustomRouteRecordRaw[] {
-  return routes
-    .map((route: any) => {
-      if (route.path !== '*' && !isExternal(route.path)) { route.path = path.resolve(baseUrl, route.path); }
+
+export function setFulPath (routes: CustomRouteRecordRaw[], baseUrl = '/'): CustomRouteRecordRaw[] {
+  return routes.map((route: any) => {
+      if (route.path !== '*' && !isExternal(route.path)) {
+        route.path = path.resolve(baseUrl, route.path);
+      }
       route.fullPath = route.path;
-      if (route.children) { route.children = filterRoutes(route.children, route.fullPath); }
+
+      if (route.children) {
+        route.children = setFulPath(route.children, route.fullPath);
+      }
       return route;
     });
+}
+
+export function filterRoutes (routes: CustomRouteRecordRaw[], access: string[] = []): CustomRouteRecordRaw[] {
+  console.log('filterRoutes', routes);
+  const result: CustomRouteRecordRaw[] = [];
+  routes.forEach(route => {
+    const tmp = { ...route };
+    if (hasRouteAccess(access, tmp)) {
+      if (tmp.children) {
+        tmp.children = filterRoutes(tmp.children, access);
+      }
+      result.push(tmp);
+    }
+  });
+
+  return result;
+}
+
+/**
+ * 通过 路由的 mapping 关系判断是否有权访问
+ * @param {*} access
+ * @param {*} route
+ */
+function hasRouteAccess (access: string[], route: CustomRouteRecordRaw) {
+  const routeMeta: RouteMeta = route.meta && route.meta || {};
+  const hasAccess = access.find(item => routeMeta.permission && routeMeta.permission === item);
+  if (hasAccess || routeMeta.permission === true) {
+    return true;
+  } else if (hasAccess === undefined) {
+    return false;
+  }
+}
+
+/**
+ * 默认加载重定向排序
+ * @param {*} routes 路由
+ * @returns
+ */
+export function defaultRoutesSort (routes: CustomRouteRecordRaw[]): any {
+  let defaultRoutes: CustomRedirectRoute[] = [];
+  const handleFn = (list: CustomRouteRecordRaw[]): void => {
+    list.map(item => {
+      const { children = [], meta = {}, path } = item;
+      if (meta.default || meta.default === 0) {
+        defaultRoutes.push(
+          {
+            permissionId: meta.permission,
+            path,
+            index: Number(meta.default)
+          });
+      }
+      if (children.length) {
+        handleFn(children);
+      }
+    });
+  };
+  handleFn(routes);
+
+  const compare = (property: string) => {
+    return function (a: any, b: any) {
+      return (a[property] - b[property]);
+    };
+  };
+  defaultRoutes = defaultRoutes.sort(compare('index'));
+  console.log(defaultRoutes);
+  return defaultRoutes;
 }

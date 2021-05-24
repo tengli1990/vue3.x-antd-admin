@@ -6,4 +6,6 @@ export interface UserInfoState {
 
 export interface UserState {
   user: UserInfoState
+  permissions: string[]
+  token: string
 }

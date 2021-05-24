@@ -5,6 +5,14 @@ import RouteView from '../components/layout/RouteView.vue';
 import { CustomRouteRecordRaw } from './router.d';
 
 export const constantRoutes: Array<CustomRouteRecordRaw> = [
+  {
+    path: '/login',
+    component: () => import('@/views/user/Login.vue'),
+    hidden: true,
+    meta: {
+      verification: false
+    }
+  }
   // {
   //   path: '/login',
   //   component: () => import('@/views/login'),
@@ -30,7 +38,8 @@ export const asyncRoutes: Array<CustomRouteRecordRaw> = [
     component: Layout,
     redirect: '/index',
     meta: {
-      title: '首页'
+      title: '首页',
+      permission: true
     },
     children: [
       {
@@ -39,7 +48,8 @@ export const asyncRoutes: Array<CustomRouteRecordRaw> = [
         component: (): Component => import('@/views/index/Index.vue'),
         meta: {
           title: '首页',
-          icon: 'icon-as-sever'
+          icon: 'icon-as-sever',
+          permission: true
         }
       }
     ]
@@ -50,7 +60,8 @@ export const asyncRoutes: Array<CustomRouteRecordRaw> = [
     redirect: '/comp/echart',
     meta: {
       title: '组件',
-      icon: 'icon-as-interation'
+      icon: 'icon-as-interation',
+      permission: true
     },
     children: [
       {
@@ -58,7 +69,8 @@ export const asyncRoutes: Array<CustomRouteRecordRaw> = [
         name: 'Echart',
         component: (): Component => import('@/views/echart.sample/Index.vue'),
         meta: {
-          title: '图表'
+          title: '图表',
+          permission: true
           // icon: 'icon-as-view'
         }
       },
@@ -69,8 +81,9 @@ export const asyncRoutes: Array<CustomRouteRecordRaw> = [
         component: RouteView,
         redirect: '/comp/echart1',
         meta: {
-          title: '页头'
-          // icon: 'icon-as-tags'
+          title: '页头',
+          permission: true
+          // icon: 'icon-as-tags',
         },
         children: [
           {
@@ -78,7 +91,8 @@ export const asyncRoutes: Array<CustomRouteRecordRaw> = [
             name: 'Echart1',
             component: (): Component => import('@/views/echart.sample/Index.vue'),
             meta: {
-              title: '图表'
+              title: '图表',
+              permission: true
               // icon: 'icon-as-view'
             }
           },
@@ -87,7 +101,8 @@ export const asyncRoutes: Array<CustomRouteRecordRaw> = [
             name: 'PageIcon1',
             component: (): Component => import('@/views/Home.vue'),
             meta: {
-              title: '页头'
+              title: '页头',
+              permission: true
               // icon: 'icon-as-tags'
             }
           }
@@ -154,7 +169,10 @@ export const asyncRoutes: Array<CustomRouteRecordRaw> = [
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes: asyncRoutes
+  routes: constantRoutes
 });
 
+// router.beforeEach(() => {
+//   console.log(11123);
+// });
 export default router;
