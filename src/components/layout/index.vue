@@ -137,16 +137,18 @@
           this.resetRouteKeys(this.$route);
         }
       },
-      // 切换模式
+      // menu菜单展开收缩的切换模式
       titleClick ({ key }: any) {
         this.$nextTick(() => {
-           const newOpenKeys: string[] = [];
-           this.openKeys.forEach((k: string) => {
-             if (key.includes(k)) {
-               newOpenKeys.push(k);
-             }
-           });
-           this.openKeys = newOpenKeys;
+          const isOpen = this.openKeys.includes(key);
+          if (!isOpen) return;
+          const newOpenKeys: string[] = [];
+          this.openKeys.forEach((k: string) => {
+            if (key.includes(k)) {
+              newOpenKeys.push(k);
+            }
+          });
+          this.openKeys = newOpenKeys;
         });
       },
       resetRouteKeys ({ path, matched }: any) {
