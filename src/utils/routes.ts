@@ -12,9 +12,10 @@ const path = require('path');
 
 export function setFulPath (routes: CustomRouteRecordRaw[], baseUrl = '/'): CustomRouteRecordRaw[] {
   return routes.map((route: any) => {
-      if (route.path !== '*' && !isExternal(route.path)) {
-        route.path = path.resolve(baseUrl, route.path);
+      if (route.path === '/:pathMatch(.*)*' || isExternal(route.path)) {
+        return route;
       }
+      route.path = path.resolve(baseUrl, route.path);
       route.fullPath = route.path;
 
       if (route.children) {
@@ -25,7 +26,6 @@ export function setFulPath (routes: CustomRouteRecordRaw[], baseUrl = '/'): Cust
 }
 
 export function filterRoutes (routes: CustomRouteRecordRaw[], access: string[] = []): CustomRouteRecordRaw[] {
-  console.log('filterRoutes', routes);
   const result: CustomRouteRecordRaw[] = [];
   routes.forEach(route => {
     const tmp = { ...route };
@@ -48,6 +48,7 @@ export function filterRoutes (routes: CustomRouteRecordRaw[], access: string[] =
 function hasRouteAccess (access: string[], route: CustomRouteRecordRaw) {
   const routeMeta: RouteMeta = route.meta && route.meta || {};
   const hasAccess = access.find(item => routeMeta.permission && routeMeta.permission === item);
+  console.log(hasAccess, route.meta);
   if (hasAccess || routeMeta.permission === true) {
     return true;
   } else if (hasAccess === undefined) {
@@ -68,7 +69,7 @@ export function defaultRoutesSort (routes: CustomRouteRecordRaw[]): any {
       if (meta.default || meta.default === 0) {
         defaultRoutes.push(
           {
-            permissionId: meta.permission,
+            permission: meta.permission,
             path,
             index: Number(meta.default)
           });
@@ -86,6 +87,5 @@ export function defaultRoutesSort (routes: CustomRouteRecordRaw[]): any {
     };
   };
   defaultRoutes = defaultRoutes.sort(compare('index'));
-  console.log(defaultRoutes);
   return defaultRoutes;
 }

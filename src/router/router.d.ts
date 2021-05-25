@@ -2,7 +2,7 @@ import { RouteRecordRaw } from 'vue-router';
 
 // 扩展属性
 export declare type CustomRouteRecordRaw = RouteRecordRaw & {
-  permissionId?: any;
+  permission?: any;
   hidden?: boolean;
   fullPath?: string;
   index?: any;
@@ -10,7 +10,7 @@ export declare type CustomRouteRecordRaw = RouteRecordRaw & {
 
 // 重定向路由
 export declare interface CustomRedirectRoute{
-  permissionId: unknow | string;
+  permission: unknow | string;
   path: string;
   index: number;
 }

@@ -76,7 +76,7 @@ const user = {
           // if (store.getters.waterMark) { // 判断是否开启水印
           //   buildWaterMark({ content: data.name + ' ' + data.userId }) // 水印内容为name + userId，可根据需要进行修改
           // }
-          const defaultPermissions: string[] = [];
+          const defaultPermissions: string[] = ['test-demo'];
           const rolePermissionsList = data.resources.concat(defaultPermissions);
           window.localStorage.setItem('ROLE_PERMISSIONS_LIST', JSON.stringify(rolePermissionsList));
           // 操作用户信息

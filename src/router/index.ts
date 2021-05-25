@@ -12,7 +12,7 @@ export const constantRoutes: Array<CustomRouteRecordRaw> = [
     meta: {
       verification: false
     }
-  }
+  },
   // {
   //   path: '/login',
   //   component: () => import('@/views/login'),
@@ -24,12 +24,12 @@ export const constantRoutes: Array<CustomRouteRecordRaw> = [
   //   component: () => import('@/views/403'),
   //   hidden: true
   // },
-  // {
-  //   path: '/404',
-  //   name: '404',
-  //   component: () => import('@/views/404'),
-  //   hidden: true
-  // }
+  {
+    path: '/404',
+    name: '404',
+    component: () => import('@/views/failed/404.vue'),
+    hidden: true
+  }
 ];
 
 export const asyncRoutes: Array<CustomRouteRecordRaw> = [
@@ -49,7 +49,8 @@ export const asyncRoutes: Array<CustomRouteRecordRaw> = [
         meta: {
           title: '首页',
           icon: 'icon-as-sever',
-          permission: true
+          permission: true,
+          default: 10
         }
       }
     ]
@@ -92,7 +93,8 @@ export const asyncRoutes: Array<CustomRouteRecordRaw> = [
             component: (): Component => import('@/views/echart.sample/Index.vue'),
             meta: {
               title: '图表',
-              permission: true
+              permission: 'test-demo'
+              // permission: true
               // icon: 'icon-as-view'
             }
           },
@@ -102,68 +104,14 @@ export const asyncRoutes: Array<CustomRouteRecordRaw> = [
             component: (): Component => import('@/views/Home.vue'),
             meta: {
               title: '页头',
-              permission: true
+              permission: true,
+              default: 9
               // icon: 'icon-as-tags'
             }
           }
         ]
       }
     ]
-  },
-  // {
-  //   path: '/test',
-  //   component: Layout,
-  //   redirect: '/test/test',
-  //   meta: {
-  //     title: '动态路由测试',
-  //     icon: 'test-tube-line'
-  //   },
-  //   children: [
-  //     {
-  //       path: 'test',
-  //       name: 'Test',
-  //       component: () => import('@/views/test'),
-  //       meta: {
-  //         title: '动态路由测试',
-  //         icon: 'test-tube-line'
-  //       }
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '/error',
-  //   name: 'Error',
-  //   component: Layout,
-  //   redirect: '/error/403',
-  //   meta: {
-  //     title: '错误页',
-  //     icon: 'error-warning-line'
-  //   },
-  //   children: [
-  //     {
-  //       path: '403',
-  //       name: 'Error403',
-  //       component: () => import('@/views/403'),
-  //       meta: {
-  //         title: '403',
-  //         icon: 'error-warning-line'
-  //       }
-  //     },
-  //     {
-  //       path: '404',
-  //       name: 'Error404',
-  //       component: () => import('@/views/404'),
-  //       meta: {
-  //         title: '404',
-  //         icon: 'error-warning-line'
-  //       }
-  //     }
-  //   ]
-  // },
-  {
-    path: '/*',
-    redirect: '/404',
-    hidden: true
   }
 ];
 

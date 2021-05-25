@@ -28,8 +28,8 @@
 
 <script lang="ts">
   import { defineComponent, toRaw } from 'vue';
-  import { asyncRoutes } from '../../router/index';
-  import { setFulPath } from '@/utils/routes';
+  // import { asyncRoutes } from '../../router/index';
+  // import { setFulPath } from '@/utils/routes';
   import AsLogo from './logo/Logo.vue';
   import AsAvatar from './avatar/Index.vue';
   // import { mapGetters } from 'vuex';
@@ -51,16 +51,10 @@
         openKeys: openKeys,
         closeKeys: [],
         collapsed: false,
-        siderWidth: 280
+        siderWidth: 280,
+        menus: this.$store.getters.routes
       };
     },
-    computed: {
-      menus () {
-        const routers = setFulPath(asyncRoutes);
-        return routers;
-      }
-    },
-
     watch: {
       $route: {
         handler (route) {

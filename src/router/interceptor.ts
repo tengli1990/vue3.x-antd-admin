@@ -31,7 +31,6 @@ router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormali
       await store.dispatch('getUserInfo', token);
       const routes = await store.dispatch('setRoutes', toRaw(store.getters.permissions));
       console.log(11231231, routes);
-      console.log(router);
       // router.addRoute(routes); // 通过获取到的权限来动态添加路由
       routes.forEach((route: any) => {
         router.addRoute(route);

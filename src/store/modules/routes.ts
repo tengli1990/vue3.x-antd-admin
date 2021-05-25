@@ -27,17 +27,27 @@ const routes: any = {
         // console.log('ava', availableRoutes);
         // 404 重定向 排序
         const defaultRoutes = defaultRoutesSort(asyncRoutes);
+
         for (const item of defaultRoutes) {
-          const { permissionId, path } = item;
-          if (access.includes(permissionId)) {
+          const { permission, path } = item;
+          if (access.includes(permission) || permission === true) {
             availableRoutes.push(
               {
-                path: '*', redirect: path, hidden: true, meta: { permission: true }
+                path: '/:pathMatch(.*)*', redirect: path, hidden: true, meta: { permission: true }
               }
             );
             break;
           }
         }
+
+        if (defaultRoutes.length === 0) {
+          availableRoutes.push(
+            {
+              path: '/:pathMatch(.*)*', redirect: '/404', hidden: true, meta: { permission: true }
+            }
+          );
+        }
+        console.log(availableRoutes);
         commit('SET_ROUTES', availableRoutes);
         resolve(availableRoutes);
       });
