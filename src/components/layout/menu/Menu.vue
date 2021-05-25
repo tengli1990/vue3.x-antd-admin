@@ -4,13 +4,13 @@
     v-if="!item.hidden"
     :item="item"
     :route-children="routeChildren"
-    @titleClick="subMenuClick"
   >
     <template v-if="item.children && item.children.length">
       <m-menu
         v-for="route in item.children"
         :key="route.path"
         :item="route"
+        @titleClick="titleClick"
       ></m-menu>
     </template>
   </component>
@@ -30,10 +30,6 @@
       item: {
         type: Object,
         required: true
-      },
-      level: {
-        type: Number,
-        default: 0
       }
     },
     setup () {
@@ -60,11 +56,10 @@
         if (children === null) return [];
         return children.filter((item: any) => item.hidden !== true);
       },
-      subMenuClick () {
-        if (this.level === 1) {
-          this.$emit('clearOpenKeys');
-        }
+      titleClick ({ key, domEvent }: any) {
+        this.$emit('titleClick', { key, domEvent });
       }
+
     }
   });
 </script>

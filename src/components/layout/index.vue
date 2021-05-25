@@ -4,7 +4,7 @@
       <AsLogo />
       <!-- menu -->
       <a-menu mode="inline" theme="dark" v-model:selectedKeys="selectedKeys" v-model:openKeys="openKeys">
-        <m-menu v-for="route in menus" :key="route.path" :item="route" :level='1' @titleClick="onClick" ></m-menu>
+        <m-menu v-for="route in menus" :key="route.path" :item="route" @titleClick="titleClick"></m-menu>
       </a-menu>
       <!-- menu end -->
     </a-layout-sider>
@@ -19,7 +19,70 @@
         </div>
       </a-layout-header>
       <a-layout-content class="basic-layout--content">
-        {{openKeys}}
+        {{ openKeys }}
+        <br />
+        {{ openKeys }}
+        <br />
+        {{ openKeys }}
+        <br />
+        <br />
+        <br />
+        {{ openKeys }}
+        <br />
+        {{ openKeys }}
+        <br />
+        {{ openKeys }}
+        <br />
+        <br />
+        <br />
+        {{ openKeys }}
+        <br />
+        {{ openKeys }}
+        <br />
+        {{ openKeys }}
+        <br />
+        <br />
+        <br />
+        {{ openKeys }}
+        <br />
+        {{ openKeys }}
+        <br />
+        {{ openKeys }}
+        <br />
+        <br />
+        <br />
+        {{ openKeys }}
+        <br />
+        {{ openKeys }}
+        <br />
+        {{ openKeys }}
+        <br />
+        <br />
+        <br />
+        {{ openKeys }}
+        <br />
+        {{ openKeys }}
+        <br />
+        {{ openKeys }}
+        <br />
+        <br />
+        <br />
+        {{ openKeys }}
+        <br />
+        {{ openKeys }}
+        <br />
+        {{ openKeys }}
+        <br />
+        <br />
+        <br />
+        {{ openKeys }}
+        <br />
+        {{ openKeys }}
+        <br />
+        {{ openKeys }}
+        <br />
+        <br />
+        <br />
         <router-view />
       </a-layout-content>
       <a-layout-footer class="basic-layout--footer">Footer</a-layout-footer>
@@ -74,12 +137,16 @@
           this.resetRouteKeys(this.$route);
         }
       },
-      onClick () {
+      // 切换模式
+      titleClick ({ key }: any) {
         this.$nextTick(() => {
-          const len = this.openKeys.length;
-          if (this.openKeys.length) {
-            this.openKeys = [this.openKeys[len - 1]];
-          }
+           const newOpenKeys: string[] = [];
+           this.openKeys.forEach((k: string) => {
+             if (key.includes(k)) {
+               newOpenKeys.push(k);
+             }
+           });
+           this.openKeys = newOpenKeys;
         });
       },
       resetRouteKeys ({ path, matched }: any) {

@@ -110,6 +110,42 @@ export const asyncRoutes: Array<CustomRouteRecordRaw> = [
             }
           }
         ]
+      },
+      {
+        path: 'test',
+        name: 'Test',
+        // component: (): Component => import('@/views/Home.vue'),
+        component: RouteView,
+        redirect: '/comp/echart1',
+        meta: {
+          title: '页头',
+          permission: true
+          // icon: 'icon-as-tags',
+        },
+        children: [
+          {
+            path: 'test-1',
+            name: 'Test-1',
+            component: (): Component => import('@/views/echart.sample/Index.vue'),
+            meta: {
+              title: '图表',
+              permission: 'test-demo'
+              // permission: true
+              // icon: 'icon-as-view'
+            }
+          },
+          {
+            path: 'test-2',
+            name: 'Test-2',
+            component: (): Component => import('@/views/Home.vue'),
+            meta: {
+              title: '页头',
+              permission: true,
+              default: 9
+              // icon: 'icon-as-tags'
+            }
+          }
+        ]
       }
     ]
   },
