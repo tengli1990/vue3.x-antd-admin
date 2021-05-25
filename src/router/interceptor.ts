@@ -22,7 +22,6 @@ router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormali
   const user = toRaw(store.getters.user);
   const permissions = toRaw(store.getters.permissions); // ['dashboard-111', 'dashboard-222']
 
-  // console.log(token, user, permissions);
   if (token) {
     if (user != null && permissions != null) {
       next();
@@ -30,7 +29,6 @@ router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormali
       // 有 token 无 user 信息, 通常在登录后在页面刷新的情况, 通过getUserInfo拿user信息
       await store.dispatch('getUserInfo', token);
       const routes = await store.dispatch('setRoutes', toRaw(store.getters.permissions));
-      console.log(11231231, routes);
       // router.addRoute(routes); // 通过获取到的权限来动态添加路由
       routes.forEach((route: any) => {
         router.addRoute(route);
@@ -40,8 +38,6 @@ router.beforeEach(async (to: RouteLocationNormalized, from: RouteLocationNormali
     }
   } else {
     const currentRoute = document.URL.split(location.host)[1];
-    console.log(currentRoute);
-    // next('/login?redirect=' + encodeURIComponent(currentRoute));
     next({
       path: '/login',
       query: {

@@ -4,7 +4,7 @@
       <AsLogo />
       <!-- menu -->
       <a-menu mode="inline" theme="dark" v-model:selectedKeys="selectedKeys" v-model:openKeys="openKeys">
-        <m-menu v-for="route in menus" :key="route.path" :item="route"></m-menu>
+        <m-menu v-for="route in menus" :key="route.path" :item="route" :level='1' @titleClick="onClick" ></m-menu>
       </a-menu>
       <!-- menu end -->
     </a-layout-sider>
@@ -19,6 +19,7 @@
         </div>
       </a-layout-header>
       <a-layout-content class="basic-layout--content">
+        {{openKeys}}
         <router-view />
       </a-layout-content>
       <a-layout-footer class="basic-layout--footer">Footer</a-layout-footer>
@@ -28,11 +29,8 @@
 
 <script lang="ts">
   import { defineComponent, toRaw } from 'vue';
-  // import { asyncRoutes } from '../../router/index';
-  // import { setFulPath } from '@/utils/routes';
   import AsLogo from './logo/Logo.vue';
   import AsAvatar from './avatar/Index.vue';
-  // import { mapGetters } from 'vuex';
   import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue';
 
   export default defineComponent({
@@ -75,6 +73,14 @@
         } else {
           this.resetRouteKeys(this.$route);
         }
+      },
+      onClick () {
+        this.$nextTick(() => {
+          const len = this.openKeys.length;
+          if (this.openKeys.length) {
+            this.openKeys = [this.openKeys[len - 1]];
+          }
+        });
       },
       resetRouteKeys ({ path, matched }: any) {
         matched.forEach((route: any) => {

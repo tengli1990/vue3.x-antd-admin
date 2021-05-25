@@ -4,6 +4,7 @@
     v-if="!item.hidden"
     :item="item"
     :route-children="routeChildren"
+    @titleClick="subMenuClick"
   >
     <template v-if="item.children && item.children.length">
       <m-menu
@@ -29,6 +30,10 @@
       item: {
         type: Object,
         required: true
+      },
+      level: {
+        type: Number,
+        default: 0
       }
     },
     setup () {
@@ -54,6 +59,11 @@
       handleChildren (children = []) {
         if (children === null) return [];
         return children.filter((item: any) => item.hidden !== true);
+      },
+      subMenuClick () {
+        if (this.level === 1) {
+          this.$emit('clearOpenKeys');
+        }
       }
     }
   });

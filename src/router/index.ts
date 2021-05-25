@@ -112,6 +112,39 @@ export const asyncRoutes: Array<CustomRouteRecordRaw> = [
         ]
       }
     ]
+  },
+  {
+    path: '/demo',
+    component: Layout,
+    redirect: '/index',
+    meta: {
+      title: 'demo',
+      permission: true
+    },
+    children: [
+      {
+        path: 'index',
+        name: 'DemoIndex',
+        component: (): Component => import('@/views/index/Index.vue'),
+        meta: {
+          title: 'hahha',
+          icon: 'icon-as-sever',
+          permission: true,
+          default: 10
+        }
+      },
+      {
+        path: 'index1',
+        name: 'DemoIndex1',
+        component: (): Component => import('@/views/failed/404.vue'),
+        meta: {
+          title: 'hahha',
+          icon: 'icon-as-sever',
+          permission: true,
+          default: 10
+        }
+      }
+    ]
   }
 ];
 
@@ -120,7 +153,4 @@ const router = createRouter({
   routes: constantRoutes
 });
 
-// router.beforeEach(() => {
-//   console.log(11123);
-// });
 export default router;

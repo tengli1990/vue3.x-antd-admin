@@ -24,7 +24,6 @@ const routes: any = {
       return new Promise((resolve: any) => {
         const newRoutes = setFulPath(asyncRoutes);
         const availableRoutes = filterRoutes(newRoutes, access);
-        // console.log('ava', availableRoutes);
         // 404 重定向 排序
         const defaultRoutes = defaultRoutesSort(asyncRoutes);
 
@@ -47,7 +46,6 @@ const routes: any = {
             }
           );
         }
-        console.log(availableRoutes);
         commit('SET_ROUTES', availableRoutes);
         resolve(availableRoutes);
       });
