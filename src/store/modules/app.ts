@@ -1,19 +1,25 @@
-// import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN';
-// import enUS from 'ant-design-vue/lib/locale-provider/en_US';
+import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN';
+import enUS from 'ant-design-vue/lib/locale-provider/en_US';
+import { Store } from 'vuex';
+import { AppLocalState } from '../types/app';
 
 const app = {
   state: {
-    locale: 1
+    locale: zhCN
   },
   mutations: {
-    // LOCALE_US: (state : ayn) => {
-    //   state.locale = enUS;
-    // }
+    setLocale (state: AppLocalState, language: string): void {
+      const locales: any = {
+        zhCN,
+        enUS
+      };
+      state.locale = locales[language];
+    }
   },
   actions: {
-    // setLocaleUS ({ commit }) {
-    //   commit('LOCALE_US');
-    // }
+    setLocale (store: Store<any>, language: string):void {
+      store.commit('setLocale', language);
+    }
   }
 };
 

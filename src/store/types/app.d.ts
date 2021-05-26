@@ -1,6 +1,6 @@
 // demo
 export interface AppLocalState {
-  locale: number;
+  locale: any;
 }
 
 export interface AppState {

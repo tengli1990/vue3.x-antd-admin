@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-   页头
+   {{$t('test')}}
+   <!-- {{$t().message.test}} -->
   </div>
 </template>
 
@@ -12,6 +13,9 @@ export default defineComponent({
   name: 'Home',
   components: {
     Aboute
+  },
+  created () {
+    console.log(11111, this.$t('test'));
   }
 });
 </script>

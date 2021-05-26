@@ -15,77 +15,19 @@
           <MenuFoldOutlined v-else @click="toggleCollapsed()" />
         </div>
         <div class="right-box">
+          <AsNotice />
+          <AsLocal />
           <AsAvatar />
         </div>
       </a-layout-header>
       <a-layout-content class="basic-layout--content">
-        {{ openKeys }}
-        <br />
-        {{ openKeys }}
-        <br />
-        {{ openKeys }}
-        <br />
-        <br />
-        <br />
-        {{ openKeys }}
-        <br />
-        {{ openKeys }}
-        <br />
-        {{ openKeys }}
-        <br />
-        <br />
-        <br />
-        {{ openKeys }}
-        <br />
-        {{ openKeys }}
-        <br />
-        {{ openKeys }}
-        <br />
-        <br />
-        <br />
-        {{ openKeys }}
-        <br />
-        {{ openKeys }}
-        <br />
-        {{ openKeys }}
-        <br />
-        <br />
-        <br />
-        {{ openKeys }}
-        <br />
-        {{ openKeys }}
-        <br />
-        {{ openKeys }}
-        <br />
-        <br />
-        <br />
-        {{ openKeys }}
-        <br />
-        {{ openKeys }}
-        <br />
-        {{ openKeys }}
-        <br />
-        <br />
-        <br />
-        {{ openKeys }}
-        <br />
-        {{ openKeys }}
-        <br />
-        {{ openKeys }}
-        <br />
-        <br />
-        <br />
-        {{ openKeys }}
-        <br />
-        {{ openKeys }}
-        <br />
-        {{ openKeys }}
-        <br />
-        <br />
-        <br />
-        <router-view />
+        <a-config-provider :locale="$store.getters.locale">
+         <router-view />
+        </a-config-provider>
       </a-layout-content>
-      <a-layout-footer class="basic-layout--footer">Footer</a-layout-footer>
+      <a-layout-footer class="basic-layout--footer">
+        <slot name="footer"></slot>
+      </a-layout-footer>
     </a-layout>
   </a-layout>
 </template>
@@ -94,6 +36,8 @@
   import { defineComponent, toRaw } from 'vue';
   import AsLogo from './logo/Logo.vue';
   import AsAvatar from './avatar/Index.vue';
+  import AsLocal from './locale/Index.vue';
+  import AsNotice from './notice/Index.vue';
   import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue';
 
   export default defineComponent({
@@ -101,6 +45,8 @@
     components: {
       [AsAvatar.name]: AsAvatar,
       [AsLogo.name]: AsLogo,
+      [AsLocal.name]: AsLocal,
+      [AsNotice.name]: AsNotice,
       MenuFoldOutlined,
       MenuUnfoldOutlined
     },
@@ -126,7 +72,7 @@
       }
     },
     mounted () {
-      console.log(toRaw(this.$store.getters.user));
+      console.log(112313123132, toRaw(this.$store.getters.locale));
     },
     methods: {
       toggleCollapsed () {
