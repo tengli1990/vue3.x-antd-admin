@@ -77,6 +77,7 @@
     methods: {
       toggleCollapsed () {
         this.collapsed = !this.collapsed;
+         document.body.classList.toggle('collapsed');
         if (this.collapsed) {
           this.openKeys = [];
         } else {

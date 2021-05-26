@@ -4,6 +4,7 @@ import { ResponseData } from '@/types/request';
 import { removeToken, removeUser, setToken, setUser } from '@/utils/token';
 import { Commit, Store } from 'vuex';
 import { UserInfoState, UserState } from '@/types/vuex';
+import waterMark from '@/utils/waterMark';
 
 const user = {
   state: {
@@ -76,6 +77,8 @@ const user = {
           // if (store.getters.waterMark) { // 判断是否开启水印
           //   buildWaterMark({ content: data.name + ' ' + data.userId }) // 水印内容为name + userId，可根据需要进行修改
           // }
+          console.log(data);
+          waterMark.set([data.name, data.mobile]);
           const defaultPermissions: string[] = ['test-demo'];
           const rolePermissionsList = data.resources.concat(defaultPermissions);
           window.localStorage.setItem('ROLE_PERMISSIONS_LIST', JSON.stringify(rolePermissionsList));
