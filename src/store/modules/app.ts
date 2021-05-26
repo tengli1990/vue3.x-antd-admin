@@ -1,7 +1,7 @@
 import zhCN from 'ant-design-vue/lib/locale-provider/zh_CN';
 import enUS from 'ant-design-vue/lib/locale-provider/en_US';
 import { Store } from 'vuex';
-import { AppLocalState } from '../types/app';
+import { AppLocalState } from '@/types/vuex';
 
 const app = {
   state: {

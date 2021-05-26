@@ -1,9 +1,9 @@
-import { CustomRouteRecordRaw } from '@/router/router';
-import { UserState } from './types/user.d';
+import { CustomRouteRecordRaw } from '@/types/router';
+import { UserState } from '@/types/vuex';
 
 export default {
   // app
-  locale: (state: any): number => state.app.locale,
+  locale: (state: any): any => state.app.locale,
   // user
   user: (state: any): UserState => state.user.user,
   token: (state: any): string => state.user.token,

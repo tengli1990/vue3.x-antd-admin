@@ -2,7 +2,7 @@ import { Component } from '@vue/runtime-core';
 import { createRouter, createWebHistory } from 'vue-router';
 import Layout from '../components/layout/Index.vue';
 import RouteView from '../components/layout/RouteView.vue';
-import { CustomRouteRecordRaw } from './router.d';
+import { CustomRouteRecordRaw } from '../types/router';
 
 export const constantRoutes: Array<CustomRouteRecordRaw> = [
   {

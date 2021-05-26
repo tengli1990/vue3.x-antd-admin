@@ -3,7 +3,7 @@ import { LoginParameters } from '@/types/login';
 import { ResponseData } from '@/types/request';
 import { removeToken, removeUser, setToken, setUser } from '@/utils/token';
 import { Commit, Store } from 'vuex';
-import { UserInfoState, UserState } from '../types/user';
+import { UserInfoState, UserState } from '@/types/vuex';
 
 const user = {
   state: {

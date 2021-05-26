@@ -1,4 +1,4 @@
-import { CustomRedirectRoute, CustomRouteRecordRaw } from '@/router/router.d';
+import { CustomRedirectRoute, CustomRouteRecordRaw } from '@/types/router';
 import { isExternal } from '@/utils/validate';
 import { RouteMeta } from 'vue-router';
 const path = require('path');

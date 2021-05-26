@@ -31,6 +31,7 @@
       onSelect ({ key }: any) {
         window.localStorage.setItem('_LANGUAGE', key);
         this.$store.dispatch('setLocale', key);
+        this.$i18n.locale = key;
       }
     }
   });

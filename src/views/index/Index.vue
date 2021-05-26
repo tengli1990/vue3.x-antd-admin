@@ -1,6 +1,6 @@
 <template>
   <a-space direction="vertical">
-    <!-- {{$t(message)}} -->
+    {{$t('test')}}
     <a-date-picker show-time  @change="onChange" @ok="onOk" />
     <a-range-picker
       :show-time="{ format: 'HH:mm' }"
