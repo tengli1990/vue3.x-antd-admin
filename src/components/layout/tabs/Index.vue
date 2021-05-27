@@ -1,9 +1,34 @@
 <template>
-  <div>
-    <div class="vab-tabs-left-panel">
-      <a-tabs @tab-click="handleTabClick" @edit="handleTabRemove" v-model:activeKey="tabActive" hide-add type="editable-card">
+  <div class="m-tabs-bar">
+    <div class="m-tabs-left-panel">
+      <a-tabs @tab-click="handleTabClick" @edit="handleTabRemove" v-model:activeKey="tabActive" hide-add type="editable-card" :tabBarStyle="{ marginBottom: 0 }">
         <a-tab-pane v-for="item in visitedRoutes" :key="item.fullPath" :closable="!isAffix(item)" :tab="item.meta.title"></a-tab-pane>
       </a-tabs>
+    </div>
+
+    <div class="m-tabs-right-panel">
+      <a-dropdown>
+        <template v-slot:overlay>
+          <a-menu @click="handleClick">
+            <a-menu-item key="closeOthersTabs">
+              <a>关闭其他</a>
+            </a-menu-item>
+            <a-menu-item key="closeLeftTabs">
+              <a>关闭左侧</a>
+            </a-menu-item>
+            <a-menu-item key="closeRightTabs">
+              <a>关闭右侧</a>
+            </a-menu-item>
+            <a-menu-item key="closeAllTabs">
+              <a>关闭全部</a>
+            </a-menu-item>
+          </a-menu>
+        </template>
+        <a-button style="margin-left: 8px">
+          更多
+          <DownOutlined />
+        </a-button>
+      </a-dropdown>
     </div>
   </div>
 </template>
@@ -12,8 +37,9 @@
   import { CustomRouteRecordRaw } from '@/types/router';
   import { defineComponent } from 'vue';
   import { mapActions, mapGetters } from 'vuex';
-
+  import { DownOutlined } from '@ant-design/icons-vue';
   export default defineComponent({
+    components: { DownOutlined },
     name: 'AsTab',
     data () {
       return {
@@ -139,4 +165,16 @@
   });
 </script>
 
-<style scoped></style>
+<style lang="less" scoped>
+.m-tabs-bar{
+  display:flex;
+  .m-tabs-left-panel{
+    flex:1px;
+  }
+  .m-tabs-right-panel{
+    display:flex;
+    align-items: center;
+    justify-content:center
+  }
+}
+</style>

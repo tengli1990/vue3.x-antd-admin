@@ -22,6 +22,7 @@ const screw: Array<CustomRouteRecordRaw> = [
           title: '图标',
           permission: true,
           default: 10
+          // affix: true
         }
       },
       {
