@@ -13,18 +13,16 @@ const setWatermark: (strs: any[]) => any = function (strs: any) {
   const ctx: any = can.getContext('2d');
 
   // 中心位置旋转
-  let row = 0;
-  strs.forEach((str: string|number):void => {
+  strs.forEach((str: string|number, index: number):void => {
     const strWidth = ctx.measureText(str).width;
     ctx.save();
-    ctx.translate(0, row * 30);
-    row++;
+    ctx.translate(0, index * 30);
     console.log(strWidth, 50505050);
     ctx.font = '16px Arial';
     ctx.fillStyle = 'rgba(24,144,255,.4)';
     ctx.textBaseline = 'middle';
     ctx.rotate(30 * Math.PI / 180);
-    ctx.fillText(str, can.width / 3, 0);
+    ctx.fillText(str, can.width / 3 - index * 18, 0);
     ctx.restore();
   });
 
@@ -59,15 +57,15 @@ const setWatermark: (strs: any[]) => any = function (strs: any) {
 
 const watermark = {
   // 该方法只允许调用一次
-  set: (str: any[]): void => {
-    let id = setWatermark(str);
+  set: (strs: any[]): void => {
+    let id = setWatermark(strs);
     setInterval(() => {
       if (document.getElementById(id) === null) {
-        id = setWatermark(str);
+        id = setWatermark(strs);
       }
     }, 500);
     window.onresize = () => {
-      setWatermark(str);
+      setWatermark(strs);
     };
   }
 };

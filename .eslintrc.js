@@ -11,6 +11,9 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2020
   },
+  globals:{
+
+  },
   rules: {
     '@typescript-eslint/no-var-requires': 0,
     '@typescript-eslint/no-explicit-any': 0,

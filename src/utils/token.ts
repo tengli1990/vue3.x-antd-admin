@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 import setting from '@/config/settings';
-import { UserInfoState } from '@/store/types/user';
+import { UserInfoState } from '@/types/vuex';
 
 const TOKEN_KEY = setting.clientId + '-token';
 

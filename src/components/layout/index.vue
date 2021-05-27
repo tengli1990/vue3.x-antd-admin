@@ -20,6 +20,7 @@
           <AsAvatar />
         </div>
       </a-layout-header>
+      <AsTab />
       <a-layout-content class="basic-layout--content">
         <a-config-provider :locale="$store.getters.locale">
          <router-view />
@@ -38,6 +39,7 @@
   import AsAvatar from './avatar/Index.vue';
   import AsLocal from './locale/Index.vue';
   import AsNotice from './notice/Index.vue';
+  import AsTab from './tabs/Index.vue';
   import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue';
 
   export default defineComponent({
@@ -47,6 +49,7 @@
       [AsLogo.name]: AsLogo,
       [AsLocal.name]: AsLocal,
       [AsNotice.name]: AsNotice,
+      [AsTab.name]: AsTab,
       MenuFoldOutlined,
       MenuUnfoldOutlined
     },

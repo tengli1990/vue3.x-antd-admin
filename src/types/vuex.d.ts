@@ -20,3 +20,10 @@ export interface UserState {
   permissions: string[]
   token: string
 }
+
+/**
+ * @module tabsBar
+ */
+export interface TabsBarState {
+  visitedRoutes: CustomRouteRecordRaw[]
+}

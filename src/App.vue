@@ -5,13 +5,16 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue';
+import { defineComponent } from 'vue';
 
   export default defineComponent({
     created () {
       // 初始化vuex 暂存的状态
-
+  // console.log(moment);
       this.vuexStateInit();
+    },
+    mounted () {
+      // console.log(moment);
     },
     methods: {
       vuexStateInit () {

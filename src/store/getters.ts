@@ -9,7 +9,10 @@ export default {
   token: (state: any): string => state.user.token,
   permissions: (state: any):string[] => state.user.permissions,
   // routes
-  routes: (state: any) :CustomRouteRecordRaw[] => state.routes.routes
+  routes: (state: any) :CustomRouteRecordRaw[] => state.routes.routes,
+
+  // tabsBar
+  visitedRoutes: (state: any):any => state.tabsBar.visitedRoutes
 
   // token: state => state.user.token,
   // roles: state => state.user.roles,
