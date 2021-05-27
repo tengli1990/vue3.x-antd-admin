@@ -1,28 +1,16 @@
 <template>
   <div>
     <div class="vab-tabs-left-panel">
-      <a-tabs
-        @tab-click="handleTabClick"
-        @edit="handleTabRemove"
-        v-model:activeKey="tabActive"
-        hide-add
-        type="editable-card"
-      >
-        <a-tab-pane
-          v-for="item in visitedRoutes"
-          :key="item.fullPath"
-          :closable="!isAffix(item)"
-          :tab="item.meta.title"
-        ></a-tab-pane>
+      <a-tabs @tab-click="handleTabClick" @edit="handleTabRemove" v-model:activeKey="tabActive" hide-add type="editable-card">
+        <a-tab-pane v-for="item in visitedRoutes" :key="item.fullPath" :closable="!isAffix(item)" :tab="item.meta.title"></a-tab-pane>
       </a-tabs>
     </div>
-
   </div>
 </template>
 
 <script lang="ts">
-import { CustomRouteRecordRaw } from '@/types/router';
-import { defineComponent } from 'vue';
+  import { CustomRouteRecordRaw } from '@/types/router';
+  import { defineComponent } from 'vue';
   import { mapActions, mapGetters } from 'vuex';
 
   export default defineComponent({
@@ -69,7 +57,7 @@ import { defineComponent } from 'vue';
       async addTabs (tag: any) {
         if (tag.name && tag.meta && tag.meta.tagHidden !== true) {
           let matched = [tag.name];
-          if (tag.matched) matched = tag.matched.map((item :any) => item.name);
+          if (tag.matched) matched = tag.matched.map((item: any) => item.name);
           await this.addVisitedRoute({
             path: tag.path,
             fullPath: tag.fullPath,
@@ -89,7 +77,7 @@ import { defineComponent } from 'vue';
         return tag.meta && tag.meta.affix;
       },
       handleTabClick (tab: any) {
-        const route = this.visitedRoutes.filter((item :any) => item.path === tab)[0];
+        const route = this.visitedRoutes.filter((item: any) => item.path === tab)[0];
         if (this.$route.fullPath !== route.fullPath) this.$router.push(route);
       },
       async handleTabRemove (fullPath: string) {
@@ -115,7 +103,7 @@ import { defineComponent } from 'vue';
             break;
         }
       },
-      async closeSelectedTag (view) {
+      async closeSelectedTag (view: CustomRouteRecordRaw) {
         await this.delVisitedRoute(view);
         if (this.isActive(view)) {
           this.toLastTag();
@@ -132,7 +120,9 @@ import { defineComponent } from 'vue';
       },
       async closeAllTabs () {
         await this.delAllVisitedRoutes();
-        // if (this.affixTabs.some((tag) => tag.path === this.toThisTag().path)) { return; }
+        if (this.affixTabs.some((tag: CustomRouteRecordRaw): boolean => tag.path === this.toThisTag().path)) {
+          return;
+        }
         this.toLastTag();
       },
       toLastTag () {
@@ -141,11 +131,9 @@ import { defineComponent } from 'vue';
         else this.$router.push('/');
       },
       toThisTag () {
-        // const view = this.visitedRoutes.find(
-        //   (item) => item.fullPath === this.$route.fullPath
-        // );
-        // if (this.$route.path !== view.path) this.$router.push(view);
-        // return view;
+        const view = this.visitedRoutes.find((item: any) => item.fullPath === this.$route.fullPath);
+        if (this.$route.path !== view.path) this.$router.push(view);
+        return view;
       }
     }
   });
