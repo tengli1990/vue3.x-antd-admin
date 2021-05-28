@@ -5,7 +5,8 @@ import { AppLocalState } from '@/types/vuex';
 
 const app = {
   state: {
-    locale: zhCN
+    locale: zhCN,
+    localeName: window.localStorage.getItem('_LANGUAGE') || 'zhCN'
   },
   mutations: {
     setLocale (state: AppLocalState, language: string): void {
@@ -14,6 +15,7 @@ const app = {
         enUS
       };
       state.locale = locales[language];
+      state.localeName = language;
     }
   },
   actions: {

@@ -38,7 +38,7 @@ const screw: Array<CustomRouteRecordRaw> = [
       {
         path: 'editor',
         name: 'ComponentEditor',
-        component: (): Component => import('@/sample/screw/Editor.vue'),
+        component: (): Component => import('@/sample/screw/Tinymce.vue'),
         meta: {
           title: '富文本',
           permission: true,
@@ -51,6 +51,16 @@ const screw: Array<CustomRouteRecordRaw> = [
         component: (): Component => import('@/sample/screw/Markdown.vue'),
         meta: {
           title: 'markdown',
+          permission: true,
+          default: 10
+        }
+      },
+      {
+        path: 'json-tree',
+        name: 'ComponentJsonTree',
+        component: (): Component => import('@/sample/screw/JsonTree.vue'),
+        meta: {
+          title: '数据树',
           permission: true,
           default: 10
         }

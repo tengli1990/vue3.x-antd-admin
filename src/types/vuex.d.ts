@@ -2,7 +2,8 @@
  * @module app
  */
 export interface AppLocalState {
-  locale: any;
+  locale: any
+  localeName: string
 }
 export interface AppState {
   app: AppLocalState

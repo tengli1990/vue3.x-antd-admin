@@ -168,6 +168,7 @@
 <style lang="less" scoped>
 .m-tabs-bar{
   display:flex;
+  border-bottom:1px solid #eee;
   .m-tabs-left-panel{
     flex:1px;
   }

@@ -4,6 +4,7 @@ import { UserState } from '@/types/vuex';
 export default {
   // app
   locale: (state: any): any => state.app.locale,
+  localeName: (state: any): string => state.app.localeName,
   // user
   user: (state: any): UserState => state.user.user,
   token: (state: any): string => state.user.token,
