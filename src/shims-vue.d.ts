@@ -7,7 +7,7 @@ declare module '*.vue' {
 
 // 声明全局方法
 declare module 'vue/types/vue' {
-  import VueRouter, {Route} from 'vue-router'
+  import VueRouter, { Route } from 'vue-router'
   import VueI18n from 'vue-i18n'
   interface Vue {
     $message: any;
@@ -16,3 +16,9 @@ declare module 'vue/types/vue' {
     $route: Route;
   }
 }
+
+
+declare module '@kangc/v-md-editor/lib/theme/github.js';
+declare module '@kangc/v-md-editor/lib/lang/en-US';
+declare module '@kangc/v-md-editor/lib/lang/zh-CN';
+declare module '@kangc/v-md-editor/lib/codemirror-editor';

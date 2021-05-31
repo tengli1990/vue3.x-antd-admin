@@ -1,7 +1,6 @@
 <template>
   <div class="sample-markdown">
-    markdown 文档
-    <input type="text" value="1111">
+   <v-md-editor v-model="text" height="400px"></v-md-editor>
   </div>
 </template>
 
@@ -9,8 +8,10 @@
   import { defineComponent } from 'vue';
 
   export default defineComponent({
-    setup () {
-      return {};
+    data () {
+      return {
+        text: '# hello world \n```js \nvar a = ‘hello world’ \nconsole.log(a) // hello world \n```'
+      };
     }
   });
 </script>

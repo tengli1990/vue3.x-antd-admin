@@ -13,22 +13,6 @@
   import 'tinymce/icons/default/icons';
   import 'tinymce/themes/silver';
 
-  // import 'tinymce/plugins/image'; // 插入上传图片插件
-  // import 'tinymce/plugins/link'; // 插入链接
-  // import 'tinymce/plugins/preview'; // 插入预览
-
-  // import 'tinymce/plugins/media'; // 插入视频插件
-  // import 'tinymce/plugins/table'; // 插入表格插件
-  // import 'tinymce/plugins/lists'; // 列表插件
-  // import 'tinymce/plugins/contextmenu';
-  // import 'tinymce/plugins/wordcount'; // 字数统计插件
-  // import 'tinymce/plugins/paste'; // 粘贴
-  // import 'tinymce/plugins/autolink'; // 链接
-  // import 'tinymce/plugins/insertdatetime'; // 链接
-  // import 'tinymce/plugins/hr'; // 分割线
-  // import 'tinymce/plugins/colorpicker';
-  // import 'tinymce/plugins/textcolor';
-
   import zhCN from './lang/zh_CN';
   tinymce.addI18n('zhCN', zhCN);
   tinymce.addI18n('enUS', {});
@@ -57,17 +41,16 @@
         console.log(111, this.$store.getters.localeName);
         return {
           mode: 'textareas',
-          theme: 'silver',
+          // theme: 'silver',
           menubar: true,
           language: this.$store.getters.localeName,
           skin_url: '/static/tinymce/skins/ui/oxide',
           branding: false,
+          statusbar: false,
           plugins:
             'print preview searchreplace autolink directionality visualblocks visualchars fullscreen image link media template code codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists wordcount imagetools textpattern help emoticons autosave',
           emoticons_database_url: '/static/tinymce/emoji.min.js',
-          toolbar: `code undo redo restoredraft | cut copy paste pastetext | forecolor backcolor bold italic underline strikethrough link anchor | alignleft aligncenter alignright alignjustify outdent indent |
-    styleselect formatselect fontselect fontsizeselect | bullist numlist | blockquote subscript superscript removeformat |
-    table image media charmap emoticons hr pagebreak insertdatetime print preview | fullscreen | bdmap indent2em lineheight formatpainter axupimgs`,
+          toolbar: 'code undo redo restoredraft | cut copy paste pastetext | forecolor backcolor bold italic underline strikethrough link anchor | alignleft aligncenter alignright alignjustify outdent indent | styleselect formatselect fontselect fontsizeselect | bullist numlist | blockquote subscript superscript removeformat | table image media charmap emoticons hr pagebreak insertdatetime print preview | fullscreen | bdmap indent2em lineheight formatpainter axupimgs',
           height: 650, // 编辑器高度
           min_height: 400,
           /* content_css: [ //可设置编辑区内容展示的css，谨慎使用
@@ -90,7 +73,7 @@
             { title: 'None', value: '' },
             { title: 'Some class', value: 'class-name' }
           ],
-          importcss_append: true,
+          importcss_append: false,
           // 自定义文件选择器的回调内容
           file_picker_callback: function (callback: any, value: any, meta: any): any {
             if (meta.filetype === 'file') {
@@ -107,7 +90,7 @@
             }
           },
           toolbar_sticky: true,
-          autosave_ask_before_unload: false
+          autosave_ask_before_unload: true
         };
       }
     },
