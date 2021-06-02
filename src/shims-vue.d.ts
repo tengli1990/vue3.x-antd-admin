@@ -21,4 +21,6 @@ declare module 'vue/types/vue' {
 declare module '@kangc/v-md-editor/lib/theme/github.js';
 declare module '@kangc/v-md-editor/lib/lang/en-US';
 declare module '@kangc/v-md-editor/lib/lang/zh-CN';
+declare module '@kangc/v-md-editor/lib/plugins/mermaid/cdn';
 declare module '@kangc/v-md-editor/lib/codemirror-editor';
+declare module '@kangc/v-md-editor';

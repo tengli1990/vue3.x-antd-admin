@@ -5,7 +5,7 @@ import store from './store';
 import Antd from 'ant-design-vue';
 import { registerComponents } from './components/index';
 import i18n from '@/utils/i18n';
-import './assets/style/global.less';
+import '@/assets/style/global.less';
 /** @module markdown */
 import VMdEditor from '@kangc/v-md-editor/lib/codemirror-editor';
 import '@kangc/v-md-editor/lib/style/codemirror-editor.css';
@@ -25,19 +25,26 @@ import 'codemirror/addon/scroll/simplescrollbars.css';
 import 'codemirror/lib/codemirror.css';
 
 import hljs from 'highlight.js';
+// 按需引入语言包
+import json from 'highlight.js/lib/languages/json';
 import enUS from '@kangc/v-md-editor/lib/lang/en-US';
 import zhCN from '@kangc/v-md-editor/lib/lang/zh-CN';
 
+import createMermaidPlugin from '@kangc/v-md-editor/lib/plugins/mermaid/cdn';
+import '@kangc/v-md-editor/lib/plugins/mermaid/mermaid.css';
+
+hljs.registerLanguage('json', json);
+
+VMdEditor.Codemirror = Codemirror;
 if (store.getters.localeName === 'zhCN') {
   VMdEditor.lang.use('zh-CN', zhCN);
 } else {
   VMdEditor.lang.use('en-US', enUS);
 }
-
-VMdEditor.Codemirror = Codemirror;
 VMdEditor.use(githubTheme, {
   Hljs: hljs
 });
+VMdEditor.use(createMermaidPlugin());
 
 const app = createApp(App);
 registerComponents(app);

@@ -1,6 +1,8 @@
 <template>
   <a-dropdown placement="bottomCenter">
-    <TranslationOutlined @click.prevent class="as-locale mr10" />
+    <div class="right-item">
+      <TranslationOutlined class="right-item--icon" @click.prevent />
+    </div>
     <template #overlay>
       <a-menu @click="onSelect">
         <a-menu-item key="zhCN">

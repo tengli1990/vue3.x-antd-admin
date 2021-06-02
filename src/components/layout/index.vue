@@ -1,11 +1,13 @@
 <template>
   <a-layout class="basic-layout">
-    <a-layout-sider class="basic-layout--sider" :width="siderWidth" v-model:collapsed="collapsed" :trigger="null" collapsible>
+    <a-layout-sider class="basic-layout--sider" v-model:width="$store.getters.siderWidth" v-model:collapsed="collapsed" :trigger="null" collapsible>
       <AsLogo />
       <!-- menu -->
-      <a-menu mode="inline" theme="dark" v-model:selectedKeys="selectedKeys" v-model:openKeys="openKeys">
-        <m-menu v-for="route in menus" :key="route.path" :item="route" @titleClick="titleClick"></m-menu>
-      </a-menu>
+      <div class="sider-menu">
+        <a-menu mode="inline" theme="dark" v-model:selectedKeys="selectedKeys" v-model:openKeys="openKeys">
+          <m-menu v-for="route in menus" :key="route.path" :item="route" @titleClick="titleClick"></m-menu>
+        </a-menu>
+      </div>
       <!-- menu end -->
     </a-layout-sider>
     <a-layout>
@@ -18,12 +20,13 @@
           <AsNotice />
           <AsLocal />
           <AsAvatar />
+          <AsSettings />
         </div>
       </a-layout-header>
       <AsTab />
       <a-layout-content class="basic-layout--content">
         <a-config-provider :locale="$store.getters.locale">
-         <router-view />
+          <router-view />
         </a-config-provider>
       </a-layout-content>
       <a-layout-footer class="basic-layout--footer">
@@ -40,6 +43,7 @@
   import AsLocal from './locale/Index.vue';
   import AsNotice from './notice/Index.vue';
   import AsTab from './tabs/Index.vue';
+  import AsSettings from './settings/Index.vue';
   import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue';
 
   export default defineComponent({
@@ -50,6 +54,7 @@
       [AsLocal.name]: AsLocal,
       [AsNotice.name]: AsNotice,
       [AsTab.name]: AsTab,
+      [AsSettings.name]: AsSettings,
       MenuFoldOutlined,
       MenuUnfoldOutlined
     },
@@ -61,7 +66,6 @@
         openKeys: openKeys,
         closeKeys: [],
         collapsed: false,
-        siderWidth: 280,
         menus: this.$store.getters.routes
       };
     },
@@ -80,7 +84,7 @@
     methods: {
       toggleCollapsed () {
         this.collapsed = !this.collapsed;
-         document.body.classList.toggle('collapsed');
+        document.body.classList.toggle('collapsed');
         if (this.collapsed) {
           this.openKeys = [];
         } else {

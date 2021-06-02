@@ -1,10 +1,10 @@
 <template>
-  <div class="as-avatar">
-    <a-dropdown :trigger="['click']">
+  <div class="as-avatar right-item">
+    <a-dropdown :trigger="['hover']">
       <span class="ant-dropdown-link">
         <a-avatar :src="avatar" />
         {{ username }}
-        <DownOutlined />
+        <DownOutlined class="right-item--icon" />
       </span>
       <template v-slot:overlay>
         <a-menu>
@@ -41,12 +41,5 @@ import { defineComponent } from 'vue';
   });
 </script>
 <style lang="less">
-  .as-avatar {
-    float: right;
-    .ant-dropdown-link {
-      display: block;
-      min-height: 64px;
-      cursor: pointer;
-    }
-  }
+
 </style>

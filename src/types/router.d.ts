@@ -14,3 +14,13 @@ export declare interface CustomRedirectRoute{
   path: string;
   index: number;
 }
+
+// 面包屑
+export declare interface BreadcrumbRoute {
+  path: string;
+  breadcrumbName: string;
+  children?: Array<{
+    path: string;
+    breadcrumbName: string;
+  }>;
+}

@@ -5,6 +5,7 @@ export default {
   // app
   locale: (state: any): any => state.app.locale,
   localeName: (state: any): string => state.app.localeName,
+  siderWidth: (state: any): number => state.app.siderWidth,
   // user
   user: (state: any): UserState => state.user.user,
   token: (state: any): string => state.user.token,

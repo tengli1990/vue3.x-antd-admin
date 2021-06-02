@@ -3,7 +3,8 @@
  */
 export interface AppLocalState {
   locale: any
-  localeName: string
+  localeName: string,
+  siderWidth: number|string
 }
 export interface AppState {
   app: AppLocalState

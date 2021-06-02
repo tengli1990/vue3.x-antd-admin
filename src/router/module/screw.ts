@@ -35,32 +35,42 @@ const screw: Array<CustomRouteRecordRaw> = [
           default: 10
         }
       },
-      {
-        path: 'editor',
-        name: 'ComponentEditor',
-        component: (): Component => import('@/sample/screw/Tinymce.vue'),
-        meta: {
-          title: '富文本',
-          permission: true,
-          default: 10
-        }
-      },
-      {
-        path: 'markdown',
-        name: 'ComponentMarkdown',
-        component: (): Component => import('@/sample/screw/Markdown.vue'),
-        meta: {
-          title: 'markdown',
-          permission: true,
-          default: 10
-        }
-      },
+      // {
+      //   path: 'editor',
+      //   name: 'ComponentEditor',
+      //   component: (): Component => import('@/sample/screw/Tinymce.vue'),
+      //   meta: {
+      //     title: '富文本',
+      //     permission: true,
+      //     default: 10
+      //   }
+      // },
+      // {
+      //   path: 'markdown',
+      //   name: 'ComponentMarkdown',
+      //   component: (): Component => import('@/sample/screw/Markdown.vue'),
+      //   meta: {
+      //     title: 'markdown',
+      //     permission: true,
+      //     default: 10
+      //   }
+      // },
       {
         path: 'json-tree',
         name: 'ComponentJsonTree',
         component: (): Component => import('@/sample/screw/JsonTree.vue'),
         meta: {
           title: '数据树',
+          permission: true,
+          default: 10
+        }
+      },
+      {
+        path: 'basic',
+        name: 'ComponentBasic',
+        component: (): Component => import('@/sample/screw/Basic.vue'),
+        meta: {
+          title: '基础组件',
           permission: true,
           default: 10
         }

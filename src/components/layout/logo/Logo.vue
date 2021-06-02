@@ -24,7 +24,7 @@ export default defineComponent({
   align-items:flex-start;
   justify-content: flex-start;
   height: 40px;
-  margin: 13px 20px;
+  margin: 12px 20px;
   overflow: hidden;
   overflow: hidden;
   font-size: 15px;
