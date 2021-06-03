@@ -13,12 +13,12 @@
   </m-field>
 
   <m-field class="mt10" title="组件-Details">
-    <m-details column="2" :label-width="100" v-model:config="detailConfig" v-model="detailData">
+    <m-details column="2" :label-width="100" width="99%" v-model:config="detailConfig" v-model="detailData">
       <template v-slot:custom="{text,record}" >
         <!-- {{text}} -->
         <a class="mr10" href="">{{record.value}}</a>
-        <a-tag>{{text}}</a-tag>
-        <a-tag color="red">{{text}}</a-tag>
+        <a-tag v-if="text">{{text}}</a-tag>
+        <a-tag v-if="text" color="red">{{text}}</a-tag>
       </template>
     </m-details>
   </m-field>
@@ -42,15 +42,16 @@
             customRender: (val: any): any => {
               return val && val + 1111;
             },
-            unit: '㊙️'
-
+            unit: '㊙️',
+            width: '300px'
           },
           count: {
             label: '数量数量',
             unit: '个'
           },
           type: {
-            label: '类型类型'
+            label: '类型类型',
+            width: '300px'
           },
           custom: {
             label: '自定义',
@@ -65,7 +66,6 @@
         this.detailData = {
           name: {
             label: '是否老师的螺蛳粉是否老师的螺蛳粉是否老师的螺蛳粉是否老师的螺蛳粉是否老师的螺蛳粉是否老师的螺蛳粉是否老师的螺蛳粉'
-
           },
           count: 100,
           type: '组合',

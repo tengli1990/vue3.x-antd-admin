@@ -1,8 +1,8 @@
 <template>
-  <div class="m-details">
+  <div class="m-details" :style="initStyle">
     <div class="m-details--content" :class="initContentClass">
       <template v-for="(item, index) in itemOptions" :key="index">
-        <div class="item" v-if="!item.hidden">
+        <div class="item" v-if="!item.hidden" :style="{width:item.width}">
           <div class="label" :style="initLabelClass">{{ item.label }}：</div>
           <div class="value" :class="`clamp-${item.row || 1}`">
             <slot :name="item.key" :text="item.value" :record="{ ...item.data, value: item.value }">
@@ -31,6 +31,10 @@
         type: [Number, String],
         default: 1
       },
+      width: {
+        type: String,
+        default: '100%'
+      },
       labelWidth: {
         type: [String, Number],
         default: ''
@@ -38,6 +42,11 @@
     },
     emits: ['update:modelValue', 'update:config'],
     computed: {
+      initStyle (): any {
+        return {
+          width: this.width
+        };
+      },
       initContentClass (): any {
         console.log({
           ['column-' + this.column]: this.column
@@ -103,7 +112,7 @@
             value = data[item];
           }
           let { defaultvalue, click, hidden } = fields[item];
-          const { type, label, customRender, appendFields = [], row = 1, unit, span = 1, options, show, fieldNames = { name: 'name', value: 'value' } } = fields[item];
+          const { type, label, customRender, appendFields = [], row = 1, width, unit, span = 1, options, show, fieldNames = { name: 'name', value: 'value' } } = fields[item];
           // 处理组合字段
           appendFields.forEach((field: string) => {
             if (data[field] || [0, false].includes(data[field])) {
@@ -141,7 +150,7 @@
           }
           // eslint-disable-next-line eqeqeq
           if (value == undefined) {
-            value = '--'; // this.$config.tableEmpty;
+            // value = '--'; // this.$config.tableEmpty;
           }
 
           if (show && Object.prototype.toString.call(show) === '[object Object]') {
@@ -175,7 +184,8 @@
             label,
             value,
             data,
-            row
+            row,
+            width
           };
         });
       }
