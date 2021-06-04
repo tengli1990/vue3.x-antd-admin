@@ -32,8 +32,8 @@ import { defineComponent } from 'vue';
       };
     },
     methods: {
-      logout () {
-        // await this.$store.dispatch('user/logout');
+      async logout () {
+        await this.$store.dispatch('handleLogout');
         const fullPath = this.$route.fullPath;
         this.$router.push(`/login?redirect=${fullPath}`);
       }

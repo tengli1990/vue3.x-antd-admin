@@ -14,6 +14,7 @@ declare module 'vue/types/vue' {
     // $i18n: VueI18n;
     $router: VueRouter;
     $route: Route;
+
   }
 }
 

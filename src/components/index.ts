@@ -11,6 +11,7 @@ import Layout from './layout/Index.vue';
 import Menu from './layout/menu/Menu.vue';
 import Icon from './icon/Index.vue';
 import Details from './details/Index.vue';
+import ECharts from './echarts/Index.vue';
 
 // icon
 const IconFont = createFromIconfontCN({
@@ -24,7 +25,8 @@ const components: Component[] = [
   Details,
   Layout,
   Menu,
-  Icon
+  Icon,
+  ECharts
 ];
 
 export const registerComponents = (app: App): void => {
@@ -35,5 +37,12 @@ export const registerComponents = (app: App): void => {
         firstUpperCase: true
       }), component);
     }
+  });
+
+  app.config.globalProperties.$testFn = (a: any): void => {
+    console.log(a);
+  };
+  app.mixin({
+    $testFn: 'Vue'
   });
 };

@@ -15,10 +15,13 @@ module.exports = {
 
   },
   rules: {
+    "@typescript-eslint/explicit-module-boundary-types": 0,
     '@typescript-eslint/no-var-requires': 0,
     '@typescript-eslint/no-explicit-any': 0,
+    "@typescript-eslint/no-empty-function": 0,
     'vue/max-attributes-per-line': 'off',
     'no-console': 'off',
+    'no-unused-expressions':0,
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'generator-star-spacing': 'off',
     'no-mixed-operators': 0,

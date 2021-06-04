@@ -45,16 +45,16 @@ const screw: Array<CustomRouteRecordRaw> = [
       //     default: 10
       //   }
       // },
-      // {
-      //   path: 'markdown',
-      //   name: 'ComponentMarkdown',
-      //   component: (): Component => import('@/sample/screw/Markdown.vue'),
-      //   meta: {
-      //     title: 'markdown',
-      //     permission: true,
-      //     default: 10
-      //   }
-      // },
+      {
+        path: 'markdown',
+        name: 'ComponentMarkdown',
+        component: (): Component => import('@/sample/screw/Markdown.vue'),
+        meta: {
+          title: 'markdown',
+          permission: true,
+          default: 10
+        }
+      },
       {
         path: 'json-tree',
         name: 'ComponentJsonTree',
