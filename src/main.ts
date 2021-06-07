@@ -4,7 +4,7 @@ import router from './router/interceptor';
 import store from './store';
 import Antd from 'ant-design-vue';
 import { registerComponents } from './components/index';
-import i18n from '@/utils/i18n';
+import i18n from '@/locales/i18n';
 import '@/assets/style/global.less';
 /** @module markdown */
 import VMdEditor from '@kangc/v-md-editor/lib/codemirror-editor';

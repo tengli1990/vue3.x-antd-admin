@@ -13,8 +13,7 @@
   "dependencies": {
     "@kangc/v-md-editor": "^2.3.1",
     "@tinymce/tinymce-vue": "^4.0.2",
-    "@types/codemirror": "^5.60.0",
-    "@types/echarts": "^4.9.7",
+   
     "@vueuse/core": "^5.0.0-beta.7",
     "add": "^2.0.6",
     "ant-design-vue": "^2.1.6",
@@ -22,6 +21,7 @@
     "codemirror": "^5.61.1",
     "core-js": "^3.12.1",
     "echarts": "^5.1.1",
+    "file-saver": "^2.0.5",
     "js-cookie": "^2.2.1",
     "moment": "^2.29.1",
     "nprogress": "^0.2.0",
@@ -31,7 +31,7 @@
     "vue-json-pretty": "^2.0.2",
     "vue-router": "^4.0.4",
     "vuex": "^4.0.0-0",
-    "yarn": "^1.22.10"
+    "xlsx": "^0.17.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",
@@ -39,6 +39,10 @@
     "@types/node": "^15.3.0",
     "@types/nprogress": "^0.2.0",
     "@types/tinymce": "^4.6.1",
+    "@types/codemirror": "^5.60.0",
+    "@types/echarts": "^4.9.7",
+    "@types/file-saver": "^2.0.2",
+    "@types/xlsx": "^0.0.36",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "@vue/cli-plugin-babel": "~4.5.0",

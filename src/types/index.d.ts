@@ -3,3 +3,7 @@ declare interface Fn<T = any, R = T> {
 }
 
 declare type TimeoutHandle = ReturnType<typeof setTimeout>;
+
+declare type TargetContext = '_self' | '_blank';
+
+declare type Nullable<T> = T | null;

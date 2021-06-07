@@ -34,9 +34,10 @@
       watch(
         () => props.options,
         () => {
-          setOptions(props.options, false);
+          console.log('change');
+           setOptions(props.options, false);
         },
-        { deep: true }
+        { immediate: true }
       );
 
       setOptions(props.options);

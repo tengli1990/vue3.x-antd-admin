@@ -4,7 +4,7 @@
       <a-col :span="8">
         <a-card :loading="loading" title="饼图">
           <!-- <SalesProductPie :loading="loading" /> -->
-          <m-echarts ref="pieECharts" :options="pieEChartsOptions"></m-echarts>
+          <m-echarts ref="pieECharts" v-model:options="pieEChartsOptions"></m-echarts>
         </a-card>
       </a-col>
       <!-- <a-col :span="8">
@@ -37,7 +37,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, nextTick, reactive, ref, toRaw } from 'vue';
+  import { defineComponent, nextTick, ref } from 'vue';
   import SalesProductPie from './echartsComponent/SalesProductPie.vue';
   import SalesProductLine from './echartsComponent/SalesProductLine.vue';
   import CustomEChart from './echartsComponent/CustomEChart.vue';
@@ -46,26 +46,16 @@
   export default defineComponent({
     components: { SalesProductPie, SalesProductLine, CustomEChart },
     setup () {
-      const loading = ref(false);
+      const loading = ref(true);
       const pieECharts: any = ref();
 
-      const pieEChartsOptions: any = toRaw(pieOptions);
+      const pieEChartsOptions: any = pieOptions;
       setTimeout(() => {
-        setTimeout(() => {
-          pieEChartsOptions.title = {
-            text: '异步加载标题'
-          };
-          pieEChartsOptions.title = {
-            text: '异步加载标题1'
-          };
-          // pieEChartsOptions.series[0].data = [];
-           const { setOptions } = pieECharts.value.useInstance();
-           console.log(pieOptions);
-          setOptions(pieOptions);
-        }, 2000);
-
         loading.value = false;
         nextTick(() => {
+          pieEChartsOptions.title = {
+            text: '异步加载标题33'
+          };
           // const { setOptions } = pieECharts.value.useInstance();
           // setOptions(
           //   {

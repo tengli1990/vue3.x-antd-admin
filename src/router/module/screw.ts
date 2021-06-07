@@ -74,6 +74,26 @@ const screw: Array<CustomRouteRecordRaw> = [
           permission: true,
           default: 10
         }
+      },
+      {
+        path: 'download',
+        name: 'ComponentDownload',
+        component: (): Component => import('@/sample/screw/Download.vue'),
+        meta: {
+          title: '下载',
+          permission: true,
+          default: 10
+        }
+      },
+      {
+        path: 'export-xlsx',
+        name: 'ComponentExportXlsx',
+        component: (): Component => import('@/sample/screw/Xlsx.vue'),
+        meta: {
+          title: '导出xlsx',
+          permission: true,
+          default: 10
+        }
       }
     ]
   }

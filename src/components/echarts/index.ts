@@ -60,7 +60,6 @@ export function useECharts (
       return;
     }
     nextTick(() => {
-      console.log(2222);
       useTimeoutFn(() => {
         if (!chartInstance) {
           initCharts();

@@ -19,6 +19,7 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 0,
     '@typescript-eslint/no-explicit-any': 0,
     "@typescript-eslint/no-empty-function": 0,
+    '@typescript-eslint/no-non-null-assertion': 0,
     'vue/max-attributes-per-line': 'off',
     'no-console': 'off',
     'no-unused-expressions':0,
