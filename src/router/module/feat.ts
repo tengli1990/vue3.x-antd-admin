@@ -26,6 +26,16 @@ const feat: Array<CustomRouteRecordRaw> = [
         }
       },
       {
+        path: 'full-screen',
+        name: 'FeatFullScreen',
+        component: ():Component => import('@/sample/feat/FullScreen.vue'),
+        meta: {
+          title: '全屏',
+          permission: true,
+          default: 10
+        }
+      },
+      {
         path: 'download',
         name: 'FeatDownload',
         component: (): Component => import('@/sample/feat/Download.vue'),
