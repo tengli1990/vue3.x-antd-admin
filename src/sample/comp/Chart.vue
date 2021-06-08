@@ -38,13 +38,9 @@
 
 <script lang="ts">
   import { defineComponent, nextTick, ref } from 'vue';
-  import SalesProductPie from './echartsComponent/SalesProductPie.vue';
-  import SalesProductLine from './echartsComponent/SalesProductLine.vue';
-  import CustomEChart from './echartsComponent/CustomEChart.vue';
   import pieOptions from './echarts/pieOptions';
 
   export default defineComponent({
-    components: { SalesProductPie, SalesProductLine, CustomEChart },
     setup () {
       const loading = ref(true);
       const pieECharts: any = ref();
@@ -56,14 +52,14 @@
           pieEChartsOptions.title = {
             text: '异步加载标题33'
           };
-          // const { setOptions } = pieECharts.value.useInstance();
-          // setOptions(
-          //   {
-          //     title: {
-          //       text: 2222
-          //     }
-          //   }
-          // );
+          const { setOptions } = pieECharts.value.useInstance();
+          setOptions(
+            {
+              title: {
+                text: 2222
+              }
+            }
+          );
           // console.log('pieOptions', pieOptions);
           // pieEChartsOptions.title = {};
           //  pieEChartsOptions.series = [];

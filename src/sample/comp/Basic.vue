@@ -1,5 +1,7 @@
 <template>
-  <m-field title="组件-PageHeader">
+<div>
+
+  <MField title="组件-PageHeader">
     <m-page-header title="组件详情" sub-title="副标题">
       <template #extra>
         <a-button type="default" @click="refresh">
@@ -10,9 +12,9 @@
         <a-button key="1" type="primary">按钮1</a-button>
       </template>
     </m-page-header>
-  </m-field>
+  </MField>
 
-  <m-field class="mt10" title="组件-Details">
+  <MField class="mt10" title="组件-Details">
     <m-details column="2" :label-width="100" width="99%" v-model:config="detailConfig" v-model="detailData">
       <template v-slot:custom="{text,record}" >
         <!-- {{text}} -->
@@ -21,8 +23,9 @@
         <a-tag v-if="text" color="red">{{text}}</a-tag>
       </template>
     </m-details>
-  </m-field>
+  </MField>
 
+</div>
 </template>
 
 <script lang="ts">

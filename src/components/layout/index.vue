@@ -26,7 +26,9 @@
       <AsTab />
       <a-layout-content class="basic-layout--content">
         <a-config-provider :locale="$store.getters.locale">
-          <router-view />
+          <transition name="fade-slide">
+            <router-view />
+          </transition>
         </a-config-provider>
       </a-layout-content>
       <a-layout-footer class="basic-layout--footer">

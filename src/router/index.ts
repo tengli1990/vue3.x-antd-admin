@@ -6,7 +6,9 @@ import { CustomRouteRecordRaw } from '../types/router';
 // import RouteView from '../components/layout/RouteView.vue';
 
 import indexRoute from './module/index';
-import screwRoute from './module/screw';
+import featRoute from './module/feat';
+import compRoute from './module/comp';
+import systemRoute from './module/system';
 export const constantRoutes: Array<CustomRouteRecordRaw> = [
   {
     path: '/login',
@@ -16,17 +18,6 @@ export const constantRoutes: Array<CustomRouteRecordRaw> = [
       verification: false
     }
   },
-  // {
-  //   path: '/login',
-  //   component: () => import('@/views/login'),
-  //   hidden: true
-  // },
-  // {
-  //   path: '/403',
-  //   name: '403',
-  //   component: () => import('@/views/403'),
-  //   hidden: true
-  // },
   {
     path: '/404',
     name: '404',
@@ -37,7 +28,9 @@ export const constantRoutes: Array<CustomRouteRecordRaw> = [
 
 export const asyncRoutes: Array<CustomRouteRecordRaw> = [
   ...indexRoute,
-  ...screwRoute
+  ...featRoute,
+  ...compRoute,
+  ...systemRoute
   // {
   //   path: '/comp',
   //   component: Layout,
@@ -169,7 +162,9 @@ export const asyncRoutes: Array<CustomRouteRecordRaw> = [
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes: constantRoutes
+  routes: constantRoutes,
+  strict: true,
+  scrollBehavior: () => ({ left: 0, top: 0 })
 });
 
 export default router;
