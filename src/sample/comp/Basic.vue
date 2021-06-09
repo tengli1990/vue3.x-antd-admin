@@ -25,6 +25,17 @@
     </m-details>
   </MField>
 
+  <MField class="mt10" title="组件-Filter">
+    <m-filter-item
+      :formData="formData"
+      :formConfig="formConfig"
+      :btnConfig ="btnConfig"
+      @btnClick ="btnClick"
+    >
+
+    </m-filter-item>
+  </MField>
+
 </div>
 </template>
 
@@ -60,7 +71,23 @@
             label: '自定义',
             row: 2
           }
-        }
+        },
+        formData: {},
+        formConfig: [{
+          type: 'input',
+          label: '输入框',
+          placeholder: '请输入',
+          bindKey: 'inputField'
+        }],
+        btnConfig: [{
+          clickType: 'search',
+          type: 'primary',
+          name: '查询'
+        }, {
+          clickType: 'reset',
+          type: 'primary',
+          name: '重置'
+        }]
       };
     },
     created () {
@@ -75,6 +102,11 @@
           custom: '自定义的值'
         };
       }, 3000);
+    },
+    methods: {
+      btnClick ({ type, params }: any) {
+        console.log(type, params);
+      }
     }
   });
 </script>
