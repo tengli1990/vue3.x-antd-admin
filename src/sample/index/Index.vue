@@ -2,6 +2,8 @@
   <div class="sample-index">
     <MPageContainer>
       欢迎来到
+
+      <p>颜色呢</p>
     </MPageContainer>
   </div>
 </template>

@@ -5,9 +5,12 @@
       <ul class="text-list">
         <h3>界面功能</h3>
         <li>
-          <div class="label">{{$store.getters.siderWidth}}</div>
+          <a-switch v-model:checked="checked" @change="updateTheme"></a-switch>
+        </li>
+        <li>
+          <div class="label">{{ $store.getters.siderWidth }}</div>
           <div class="content">
-            {{siderWidth}}
+            {{ siderWidth }}
             <a-input v-model:value="siderWidth.value" placeholder="Basic usage" />
           </div>
         </li>
@@ -17,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, UnwrapRef } from 'vue';
+  import { defineComponent, reactive, UnwrapRef } from 'vue';
   import { SettingOutlined } from '@ant-design/icons-vue';
   import { useStore } from 'vuex';
   export default defineComponent({
@@ -38,7 +41,8 @@ import { defineComponent, reactive, UnwrapRef } from 'vue';
       return {
         title: '项目配置',
         visible: false,
-        placement: 'right'
+        placement: 'right',
+        checked: false
       };
     },
     watch: {
@@ -60,6 +64,26 @@ import { defineComponent, reactive, UnwrapRef } from 'vue';
       },
       showDrawer () {
         this.visible = true;
+      },
+      updateTheme (checked: boolean) {
+        let config: any;
+        if (checked) {
+          document.body.classList.add('theme-dark');
+          config = {
+            'primary-color': '#177ddc',
+            'btn-primary-bg': '#5d72cc',
+            'heading-color': '#fff',
+            'text-color': '#fff',
+            'component-background': 'rgba(0,0,0,.8)'
+          };
+        } else {
+          config = {
+            'primary-color': '#4a18ff',
+            'btn-primary-bg': '#5d72cc',
+            'component-background': '#fff'
+          };
+        }
+        (window as any).less.modifyVars(config);
       }
     }
   });

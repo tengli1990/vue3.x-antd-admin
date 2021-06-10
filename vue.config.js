@@ -66,17 +66,17 @@ module.exports = {
     config.when(process.env.NODE_ENV !== 'development', (config) => {
       config.performance.set('hints', false);
       config.devtool('none');
-      config.optimization.splitChunks({
-        chunks: 'all',
-        cacheGroups: {
-          libs: {
-            name: 'vue3.x-antd-admin',
-            test: /[\\/]node_modules[\\/]/,
-            priority: 10,
-            chunks: 'initial'
-          }
-        }
-      });
+      // config.optimization.splitChunks({
+      //   chunks: 'all',
+      //   cacheGroups: {
+      //     libs: {
+      //       name: 'vue3.x-antd-admin',
+      //       test: /[\\/]node_modules[\\/]/,
+      //       priority: 10,
+      //       chunks: 'initial'
+      //     }
+      //   }
+      // });
     });
   },
   runtimeCompiler: true,
