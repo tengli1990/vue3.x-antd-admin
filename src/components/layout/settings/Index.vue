@@ -66,24 +66,11 @@
         this.visible = true;
       },
       updateTheme (checked: boolean) {
-        let config: any;
         if (checked) {
           document.body.classList.add('theme-dark');
-          config = {
-            'primary-color': '#177ddc',
-            'btn-primary-bg': '#5d72cc',
-            'heading-color': '#fff',
-            'text-color': '#fff',
-            'component-background': 'rgba(0,0,0,.8)'
-          };
         } else {
-          config = {
-            'primary-color': '#4a18ff',
-            'btn-primary-bg': '#5d72cc',
-            'component-background': '#fff'
-          };
+          document.body.classList.remove('theme-dark');
         }
-        (window as any).less.modifyVars(config);
       }
     }
   });

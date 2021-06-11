@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "node color && vue-cli-service serve",
-    "build": "node color && vue-cli-service build",
-    "build:test": "node color && vue-cli-service build --mode testing",
-    "build:prod": "node color && vue-cli-service build --mode production",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "build:test": "vue-cli-service build --mode testing",
+    "build:prod": "vue-cli-service build --mode production",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
