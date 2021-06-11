@@ -36,9 +36,15 @@
     }
   }
   &--content {
+    position: relative;
     height: 100%;
     overflow: auto;
     padding:24px 16px;
+    .fade-slide-leave-active {
+      position: absolute;
+      left:16px;
+      right:16px;
+    }
   }
   &--footer {
     padding: 0;
