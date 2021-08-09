@@ -20,7 +20,6 @@
     "antd-theme-generator": "^1.2.8",
     "axios": "^0.21.1",
     "codemirror": "^5.61.1",
-    
     "core-js": "^3.12.1",
     "echarts": "^5.1.1",
     "file-saver": "^2.0.5",

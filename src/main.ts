@@ -5,7 +5,6 @@ import store from './store';
 import Antd from 'ant-design-vue';
 import { registerComponents } from './components/index';
 import i18n from '@/locales/i18n';
-import 'ant-design-vue/dist/antd.less';
 import '@/assets/style/index.less';
 /** @module markdown */
 import VMdEditor from '@kangc/v-md-editor/lib/codemirror-editor';
